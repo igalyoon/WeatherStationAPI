@@ -1,0 +1,79 @@
+extends layout
+
+block content
+    h1 Weather Station API
+
+    h2 POST /report
+    p Send a temperature report for a specific weather station
+    pre.
+        Request Body:
+        {
+          "stationId": string,
+          "temperature": number
+        }
+
+        Response:
+        {
+          "stationId": string,
+          "temperatures": [
+            {
+              "timestamp": string,
+              "temperature": number
+            }
+          ]
+        }
+
+    h2 GET /logs/:stationId
+    p Get temperature logs for a specific weather station
+    pre.
+        Request Params:
+        stationId: string
+
+        Response:
+        [
+          {
+            "timestamp": string,
+            "temperature": number
+          }
+        ]
+
+    h2 DELETE /logs/:stationId
+    p Delete temperature logs for a specific weather station
+    pre.
+        Request Params:
+        stationId: string
+
+        Response:
+        {
+          "message": string
+        }
+
+    h2 GET /stats/:stationId
+    p Get temperature statistics for a specific weather station
+    pre.
+        Request Params:
+        stationId: string
+
+        Response:
+        {
+          "average": number,
+          "min": number,
+          "max": number,
+          "median": number
+        }
+
+    h2 GET /stats/:stationId/:startDate/:endDate
+    p Get temperature statistics for a specific weather station and date range
+    pre.
+        Request Params:
+        stationId: string
+        startDate: string (YYYY-MM-DD)
+        endDate: string (YYYY-MM-DD)
+
+        Response:
+        {
+          "average": number,
+          "min": number,
+          "max": number,
+          "median": number
+        }
